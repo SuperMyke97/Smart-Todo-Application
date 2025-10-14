@@ -1,0 +1,14 @@
+[project]
+name = "smart-todo-application"
+version = "0.1.0"
+description = "Build a command-line todo application with advanced features powered by regular expressions for intelligent task parsing and management"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.9.0",
+    "flake8>=7.3.0",
+    "mypy>=1.18.2",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "python-dateutil>=2.9.0.post0",
+]
