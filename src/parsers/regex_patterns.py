@@ -6,7 +6,7 @@ DATE_PATTERN = re.compile(r"([0-9]{4}-[0-1][0-9]-[0-3][0-9])|(tomorrow)|(next\s?
 FREQUENCY_PATTERN = re.compile(r"every\s?(?P<freq>\w+)", re.I)
 DURATION_PATTERN = re.compile(r"(\d+(min|hr|h|sec)?)(\s?)(\d+(min|sec))?(\s?)(\d+(sec))", re.I)
 TIME_PATTERN = re.compile(r"(at|by)\s\d+(:\d+)?(pm|am)", re.IGNORECASE)
-TAG_PATTERN = re.compile(r"@(?P<tag>\w+)?")
+TAG_PATTERN = re.compile(r"@(?P<tag>(^(high|medium|low)$)|(\w+))?")
 PRIORITY_PATTERN = re.compile(r"#(?P<priority>\w+)?")
 ASSIGNED_PATTERN = re.compile(r"\w+@\w+.\w+")
 
