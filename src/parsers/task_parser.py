@@ -9,7 +9,9 @@ def add(text: str):
     
     text = text.lower()
     data: dict = regex_patterns(text)
+    data["full_task"] = text
     text_list = text.split(" ")
+    task_metadata = []
 
     patterns = [re.compile(r"due:(([0-9]{4}-[0-1][0-9]-[0-3][0-9])|(tomorrow)|(next\s?week\s\w+))", re.I), 
                 re.compile(r"every\s?([a-zA-Z]+)", re.I), 
@@ -22,20 +24,25 @@ def add(text: str):
 
     for p in patterns:
         if p.search(text)!= None:
-            z = p.search(text).group().strip()
-            # print(z)
-            if ' ' in z:
-                for a in z.split(' '): 
+            subword = p.search(text).group().strip()
+            task_metadata.append(subword)
+            
+            if ' ' in subword:
+                for a in subword.split(' '): 
                     text_list.remove(a)
-
-            if z in text_list:
-                text_list.remove(z)
+                    
+            if subword in text_list:
+                text_list.remove(subword)
 
         
-    data["Task"] = ' '.join(text_list)
+    task = ' '.join(text_list)
+    task_metadata.append(task)
+    data['task'] = task
+    data["task_metadata"] = task_metadata
+    print(task_metadata)
     # print(data)
-    typer.echo(f"Task added: {data["Task"]} \
-            \nTags: {data["Tag"]} | Priority: {data["Priority"]} | Due: {data["Due"]}")
+    typer.echo(f"Task added: {data["task"]} \
+            \nTags: {data["tag"]} | Priority: {data["priority"]} | Due: {data["due"]}")
     return data 
 
 
